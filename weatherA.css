@@ -1,0 +1,169 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ul,
+ol,
+li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    font-family: 'Roboto', sans-serif;
+    background: #E5E5E5;
+}
+/*------------------------MAIN------------------------*/
+.main {
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+.wrapper {
+    width: 621px;
+    height: 462px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.window {
+    width: 600px;
+    height: 435px;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+}
+.window__content {
+    display: flex;
+}
+.window__input {
+    height: 45px;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.window__input-text {
+    font-size: 18px;
+    border: 0;
+    outline: none;
+    margin-left: 16px;
+}
+.window__input-loop {
+    width: 21.90px;
+    height: 21.90px;
+    margin-right: 21.40px;
+    background: #FFFFFF;
+}
+.city {
+   width: 300px;
+}
+.city__temperature {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 20px 0 17px 0;
+}
+.city__celcium {
+    display: block;
+    font-size: 70px;
+    line-height: 82px;
+    margin: 0 0 40px 23px;
+}
+.city__weather-pic {
+    display: block;
+    margin: 0 auto;
+}
+.city__name-block {
+    display: flex;
+    gap: 162px;
+    margin-top: 98px;
+}
+.city__name {
+    display: block;
+    font-size: 24px;
+    line-height: 28px;
+    margin-left: 12px;
+}
+.city__heart-button {
+    background-color: #FFFFFF;
+}
+.city__details-buttons {
+    display: flex;
+}
+.city__details-button {
+    width: 100px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid black;
+}
+.active-button {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.added-locs {
+    width: 300px;
+}
+.added-locs__title {
+    font-size: 24px;
+    line-height: 28px;
+    border-bottom: 1px solid black;
+    padding: 33px 0 7px 18px;
+}
+.added-locs__current {
+    padding: 35px 0 49px 18px;
+}
+.added-locs__list {
+    width: 113px;
+    height: 238px;
+}
+.added-locs__list-item {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+.city__temperature--detailed {
+    padding: 33px 0 46px 0;
+}
+.city__name--detailed {
+    margin-left: 17px;
+}
+.city__detailed-weather-list {
+    width: 184px;
+    height: 196px;
+    margin: 41px 0 0 15px;
+}
+.city__detailed-weather-item {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}

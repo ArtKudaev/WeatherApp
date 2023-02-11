@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="weatherA.css">
+    <title>WeatherApp</title>
+</head>
+<body>
+    <main class="main">
+        <div class="wrapper">
+            <div class="window">           
+                <div class="window__input">
+                    <input class="window__input-text" type="text" placeholder="Aktobe">
+                    <button class="window__input-loop"><img src="img/search.png" alt="cloud-pic"></button>
+                </div>
+                <div class="window__content">
+                    <div class="city">
+                        <div class="city__temperature">
+                            <span class="city__celcium">14°</span>
+                            <img class="city__weather-pic" src="img/cloud.png" alt="cloud-pic">
+                            <div class="city__name-block">
+                                <span class="city__name">Aktobe</span>
+                                <button class="city__heart-button"><img src="img/hrt.png" alt="heart"></button>
+                            </div> 
+                        </div>
+                        <div class="city__details-buttons">
+                            <div class="city__details-button active-button">Now</div>
+                            <div class="city__details-button">Details</div>
+                            <div class="city__details-button">Forecast</div>
+                        </div>                    
+                    </div>
+                    <div class="added-locs">
+                        <div class="added-locs__title">Added locations:</div>
+                        <div class="added-locs__current">
+                            <dl class="added-locs__list">
+                                <dt class="added-locs__list-item">Amur</dt>
+                                <dt class="added-locs__list-item">Samara</dt>
+                                <dt class="added-locs__list-item">Bali</dt>
+                                <dt class="added-locs__list-item">Dane</dt>
+                                <dt class="added-locs__list-item">Kilo</dt>
+                                <dt class="added-locs__list-item">Nur-Sultan</dt>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="window">           
+                <div class="window__input">
+                    <input class="window__input-text" type="text" placeholder="Aktobe">
+                    <button class="window__input-loop"><img src="img/search.png" alt="cloud-pic"></button>
+                </div>
+                <div class="window__content">
+                    <div class="city">
+                        <div class="city__temperature city__temperature--detailed">
+                            <span class="city__name city__name--detailed">Aktobe</span>
+                            <dl class="city__detailed-weather-list">
+                                <dt class="city__detailed-weather-item">Temperature: 14°</dt>
+                                <dt class="city__detailed-weather-item">Feels like: 10°</dt>
+                                <dt class="city__detailed-weather-item">Weather: Clouds</dt>
+                                <dt class="city__detailed-weather-item">Sunrise: 03:21</dt>
+                                <dt class="city__detailed-weather-item">Sunset: 18:54</dt>
+                            </dl> 
+                        </div>
+                        <div class="city__details-buttons">
+                            <div class="city__details-button">Now</div>
+                            <div class="city__details-button active-button">Details</div>
+                            <div class="city__details-button">Forecast</div>
+                        </div>                    
+                    </div>
+                    <div class="added-locs">
+                        <div class="added-locs__title">Added locations:</div>
+                        <div class="added-locs__current">
+                            <dl class="added-locs__list">
+                                <dt class="added-locs__list-item">Amur</dt>
+                                <dt class="added-locs__list-item">Samara</dt>
+                                <dt class="added-locs__list-item">Bali</dt>
+                                <dt class="added-locs__list-item">Dane</dt>
+                                <dt class="added-locs__list-item">Kilo</dt>
+                                <dt class="added-locs__list-item">Nur-Sultan</dt>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<script src="wApp.js"></script>    
+</body>
+</html>
