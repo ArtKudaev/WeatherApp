@@ -19,11 +19,14 @@ input.addEventListener('keyup', e => {
                 throw Error
             }
         })
-        .then(data =>
-            document.querySelector('.city__temperature').innerHTML = data
-            ).catch(error => {
-                console.log(error)
-            })
+        .then(data => { 
+            console.log(data)
+            document.querySelector('.city__name').innerHTML = data.name;
+            document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
+            document.querySelector('.city__weather-pic').innerHTML = data.weather[0]['icon'];
+        }).catch(error => {
+            console.log(error)
+        })
         }
 });
 
@@ -45,10 +48,13 @@ btnRequest.addEventListener('click', () => {
                 throw Error
             }
         })
-        .then(data =>
-            document.querySelector('.city__temperature').innerHTML = data
-            ).catch(error => {
-                console.log(error)
-            })
+        .then(data => { 
+            console.log(data)
+            document.querySelector('.city__name').innerHTML = data.name;
+            document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
+            document.querySelector('.city__weather-pic').innerHTML = data.weather[0]['icon'];
+        }).catch(error => {
+            console.log(error)
+        })
         }
 );
