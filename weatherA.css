@@ -96,9 +96,16 @@ body {
     line-height: 82px;
     margin: 0 0 40px 23px;
 }
+.city__weather-pic-block {
+    width: 78px;
+    height: 59px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .city__weather-pic {
     display: block;
-    margin: 0 auto;
 }
 .city__name-block {
     display: flex;

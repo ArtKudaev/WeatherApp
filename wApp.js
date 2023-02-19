@@ -23,7 +23,8 @@ input.addEventListener('keyup', e => {
             console.log(data)
             document.querySelector('.city__name').innerHTML = data.name;
             document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
-            document.querySelector('.city__weather-pic').innerHTML = data.weather[0]['icon'];
+            let icon = data.weather[0].icon
+            document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
         }).catch(error => {
             console.log(error)
         })
@@ -52,7 +53,8 @@ btnRequest.addEventListener('click', () => {
             console.log(data)
             document.querySelector('.city__name').innerHTML = data.name;
             document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
-            document.querySelector('.city__weather-pic').innerHTML = data.weather[0]['icon'];
+            let icon = data.weather[0].icon
+            document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
         }).catch(error => {
             console.log(error)
         })
