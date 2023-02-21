@@ -118,7 +118,7 @@ body {
     line-height: 28px;
     margin-left: 12px;
 }
-.city__heart-button {
+.city__add-button {
     background-color: #FFFFFF;
 }
 .city__details-buttons {
@@ -151,13 +151,28 @@ body {
     padding: 35px 0 49px 18px;
 }
 .added-locs__list {
-    width: 113px;
-    height: 238px;
+    height: 240px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.added-locs__list::-webkit-scrollbar {
+    display: none;
+}
+.added-locs__item-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 .added-locs__list-item {
     font-size: 24px;
     line-height: 28px;
-    margin-bottom: 10px;
+}
+.added-locs__delBtn {
+    width: 20px;
+    height: 20px;
+    margin-right: 25px;
+    background-color: #FFFFFF;
 }
 .city__temperature--detailed {
     padding: 33px 0 46px 0;
