@@ -20,13 +20,14 @@ function fetchRequest () {
             }
         })
         .then(data => { 
-            console.log(data)
             document.querySelector('.city__name').innerHTML = data.name;
             document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
             let icon = data.weather[0].icon;
             document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+            const localStore = data;
+            localStorage.setItem('fromLocStore', JSON.stringify(localStore));
         }).catch((error) => {
-            alert('УАХЬ!!!');
+            alert('UPS..');
         })
 }
 
@@ -44,9 +45,8 @@ btnRequest.addEventListener('click', () => {
 const addButton = document.querySelector('.city__add-button');
 
 addButton.addEventListener ('click', () => {
-    const addedList = document.createElement('dl');
-    addedList.className = 'added-locs__list';
     const addedLoc = createLocsLicst();
+    const addedList = document.querySelector('.added-locs__list');
     addedList.append(addedLoc);
 });
 
@@ -56,10 +56,43 @@ function createLocsLicst () {
     const addedCityName = document.querySelector('.city__name').innerHTML;
     addedListItem.textContent = addedCityName;
 
-    const locDelBtn = document.createElement('button');
+    function addCityToNow () {
+        const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
+        const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
+        const cityName = addedListItem.innerText;
+        const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
+               
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else {
+                    console.log("ERROR");
+                    throw Error
+                }
+            })
+            .then(data => { 
+                document.querySelector('.city__name').innerHTML = data.name;
+                document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
+                let icon = data.weather[0].icon;
+                document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+                const localStore = data;
+                localStorage.setItem('fromLocStore', JSON.stringify(localStore));
+            }).catch((error) => {
+                alert('UPS..');
+            })
+    }
+
+    addedListItem.addEventListener('click', () => {
+        addCityToNow();
+    }
+);
+
+    const locDelBtn = document.createElement('input');
     locDelBtn.className = 'added-locs__delBtn';
     locDelBtn.type = 'image';
-    locDelBtn.src = 'delBtn.png';
+    locDelBtn.src = 'img/delBtn.png';
 
     locDelBtn.addEventListener('click', (e) => {
         deleteAddedLoc(e.target);
@@ -67,7 +100,7 @@ function createLocsLicst () {
 
     const addedLoc = document.createElement('div');
     addedLoc.className = 'added-locs__item-block';
-    
+
     addedLoc.append(addedListItem, locDelBtn);
     
     return addedLoc;
@@ -79,3 +112,4 @@ function deleteAddedLoc (target) {
     
     addedList.removeChild(addedLoc);
 };
+
