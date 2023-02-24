@@ -24,8 +24,6 @@ function fetchRequest () {
             document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
             let icon = data.weather[0].icon;
             document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
-            const localStore = data;
-            localStorage.setItem('fromLocStore', JSON.stringify(localStore));
         }).catch((error) => {
             alert('UPS..');
         })
