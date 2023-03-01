@@ -1,5 +1,9 @@
+import {setCitiesToLS, getCitiesFromLS} from './wAppStorage.js'
+
 const input = document.querySelector('.window__input-text');
 const btnRequest = document.querySelector('.window__input-loop');
+let favoriteArr = [];
+
 
 function fetchRequest () {
     const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
@@ -25,7 +29,7 @@ function fetchRequest () {
             let icon = data.weather[0].icon;
             document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
         }).catch((error) => {
-            alert('UPS..');
+            alert('UPS...');
         })
 }
 
@@ -46,12 +50,21 @@ addButton.addEventListener ('click', () => {
     const addedLoc = createLocsLicst();
     const addedList = document.querySelector('.added-locs__list');
     addedList.append(addedLoc);
+
+    favoriteArr.push(input.value);
+    setCitiesToLS(favoriteArr);
 });
 
-function createLocsLicst () {    
+function createLocsLicst (cityName) {    
     const addedListItem = document.createElement('dt');
     addedListItem.className = 'added-locs__list-item';
-    const addedCityName = document.querySelector('.city__name').innerHTML;
+
+    let addedCityName;
+    if(cityName) {
+         addedCityName = cityName;
+    } else {
+        addedCityName = document.querySelector('.city__name').innerHTML;
+    }
     addedListItem.textContent = addedCityName;
 
     function addCityToNow () {
@@ -107,7 +120,27 @@ function createLocsLicst () {
 function deleteAddedLoc (target) {
     const addedList = target.closest('.added-locs__list');
     const addedLoc = target.closest('.added-locs__item-block');  
-    
     addedList.removeChild(addedLoc);
+
+    const city = target.previousElementSibling.textContent;
+    favoriteArr.forEach((item, index) => {
+        if(item.toLowerCase() === city.toLowerCase()) {
+            favoriteArr.splice(index, 1)
+        }
+    })
+    
+    setCitiesToLS(favoriteArr);
 };
+
+window.addEventListener('load', () => {
+    const cities = getCitiesFromLS();
+    favoriteArr = cities;
+    if(cities && cities.length) {
+        cities.forEach(item => {
+            const addedLoc = createLocsLicst(item);
+            const addedList = document.querySelector('.added-locs__list');
+            addedList.append(addedLoc);
+        })
+    }
+})
 
