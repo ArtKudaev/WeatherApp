@@ -1,8 +1,15 @@
+const KEY = 'favorite-cities';
 
-export function setCitiesToLS (favoriteArr) {
-    localStorage.setItem('cities', JSON.stringify(favoriteArr))
+export function saveFavoriteCities (favoriteArr) {
+    localStorage.setItem(KEY, JSON.stringify(favoriteArr))
 }
 
-export function getCitiesFromLS () {
-    return JSON.parse(localStorage.getItem('cities'))
+export function getFavoriteCities () {
+    return JSON.parse(localStorage.getItem(KEY)) || []
+}
+
+export function getCurrentCity() {
+    const favoriteCities = JSON.parse(localStorage.getItem(KEY));
+    const currentCity = favoriteCities[favoriteCities.length - 1];
+    return currentCity;
 }

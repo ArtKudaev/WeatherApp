@@ -14,20 +14,24 @@
     <main class="main">
         <div class="wrapper">
             <div class="window">           
-                <div class="window__input">
-                    <input class="window__input-text" type="text" placeholder="Aktobe">
-                    <button class="window__input-loop"><img src="img/search.png" alt="cloud-pic"></button>
-                </div>
+                <form action="/form" class="window__input">
+                    <input name="city" class="window__input-text" type="text" placeholder="Write here pls">
+                    <button class="window__input-loop" type="submit">
+                        <img src="img/search.png" alt="cloud-pic">
+                    </button>
+                </form>
                 <div class="window__content">
                     <div class="city">
                         <div class="city__temperature">
-                            <span class="city__celcium">14&deg;</span>
+                            <span class="city__celcium"> &deg;</span>
                             <div class="city__weather-pic-block">
                                 <img class="city__weather-pic" src="img/cloud.png" alt="cloud-pic">
                             </div>
                             <div class="city__name-block">
-                                <span class="city__name">Aktobe</span>
-                                <button class="city__add-button"><img src="img/hrt.png" alt="heart"></button>
+                                <span class="city__name">City</span>
+                                <button class="city__add-button">
+                                    <img src="img/hrt.png" alt="heart">
+                                </button>
                             </div> 
                         </div>
                         <div class="city__details-buttons">
@@ -169,6 +173,6 @@
             </div>
         </div>-->
     </main>
-<script src="wApp.js" type="module"></script>     
+<script src="main.js" type="module"></script>     
 </body>
 </html>
