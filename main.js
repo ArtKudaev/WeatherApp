@@ -111,3 +111,16 @@ window.addEventListener('load', () => {
     else addDataToNowSection(tata);
 })
 
+const activeButton = document.querySelectorAll('.city__details-button');
+
+activeButton.forEach(function(button) {
+    button.addEventListener ('click', () => {
+        let currentButton = button;
+        
+        activeButton.forEach(function(button) {
+        button.classList.remove('active-button');
+        });
+
+        currentButton.classList.add('active-button');
+    });
+});

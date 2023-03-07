@@ -135,6 +135,8 @@ body {
     align-items: center;
     justify-content: center;
     border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #FFFFFF;
 }
 .active-button {
     color: #FFFFFF;
@@ -177,7 +179,10 @@ body {
     background-color: #FFFFFF;
 }
 .city__temperature--detailed {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 33px 0 46px 0;
+    display: none;
 }
 .city__name--detailed {
     margin-left: 17px;
