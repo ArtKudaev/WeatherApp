@@ -34,12 +34,12 @@ function addDataToDetailsSection(inputCity) {
         let sunRise = data.sys.sunrise;
         let sunriseTime = new Date(sunRise * 1000);
         let riseHours = sunriseTime.getHours().toString().padStart(2, '0');
-        let riseMinutes = '0' + sunriseTime.getMinutes().toString().padStart(2, '0');
+        let riseMinutes = sunriseTime.getMinutes().toString().padStart(2, '0');
         document.querySelector('.sunrise').innerHTML = `Sunrise: ${riseHours}:${riseMinutes}`;
-        let sunSet = data.sys.sunrise;
+        let sunSet = data.sys.sunset;
         let sunsetTime = new Date(sunSet * 1000);
         let setHours = sunsetTime.getHours().toString().padStart(2, '0');
-        let setMinutes = '0' + sunsetTime.getMinutes().toString().padStart(2, '0');
+        let setMinutes = sunsetTime.getMinutes().toString().padStart(2, '0');
         document.querySelector('.sunset').innerHTML = `Sunset: ${setHours}:${setMinutes}`;
     }).catch((error) => {
         alert('UPS...');
