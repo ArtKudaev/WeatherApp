@@ -22,7 +22,7 @@
                 </form>
                 <div class="window__content">
                     <div class="city">
-                        <div class="city__temperature">
+                        <div class="city__temperature tab-1 active">
                             <span class="city__celcium"> &deg;</span>
                             <div class="city__weather-pic-block">
                                 <img class="city__weather-pic" src="img/cloud.png" alt="cloud-pic">
@@ -34,7 +34,7 @@
                                 </button>
                             </div> 
                         </div>
-                        <div class="city__temperature city__temperature--detailed">
+                        <div class="city__temperature city__temperature--detailed tab-2">
                             <span class="city__name city__name--detailed">Aktobe</span>
                             <dl class="city__detailed-weather-list">
                                 <dt class="city__detailed-weather-item">Temperature: 14°</dt>
@@ -45,9 +45,60 @@
                             </dl> 
                         </div>
                         <div class="city__details-buttons">
-                            <button class="city__details-button active-button" type="button">Now</button>
-                            <button class="city__details-button" type="button">Details</button>
-                            <button class="city__details-button" type="button">Forecast</button>
+                            <button class="city__details-button active" data-tab="tab-1" type="button">Now</button>
+                            <button class="city__details-button" data-tab="tab-2" type="button">Details</button>
+                            <button class="city__details-button" data-tab="tab-3" type="button">Forecast</button>
+                        </div>
+                        <div class="city__temperature city__temperature--hidden tab-3">
+                            <span class="city__name city__name--detailed">Aktobe</span>
+                            <div class="city__daily-changes">
+                                <div class="daily-changes__data-time">
+                                    <span class="daily-changes__data daily-changes--text">17 May</span>
+                                    <span class="daily-changes__time daily-changes--text">12:00</span>
+                                </div>
+                                <div class="daily-changes__conditions">
+                                    <div class="daily-changes__temperature">
+                                        <span class="daily-changes__now daily-changes--text">Temperature: 13°</span>
+                                        <span class="daily-changes__feels-like daily-changes--text">Feels like: 10°</span>
+                                    </div>
+                                    <div class="daily-changes__precipitation">
+                                        <span class="daily-changes__precipitation-title daily-changes--text">Rain</span>
+                                        <img class="daily-changes__precipitation-pic" src="img/rain.png" alt="daily-wthr-pic">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="city__daily-changes">
+                                <div class="daily-changes__data-time">
+                                    <span class="daily-changes__data daily-changes--text">17 May</span>
+                                    <span class="daily-changes__time daily-changes--text">15:00</span>
+                                </div>
+                                <div class="daily-changes__conditions">
+                                    <div class="daily-changes__temperature">
+                                        <span class="daily-changes__now daily-changes--text">Temperature: 13°</span>
+                                        <span class="daily-changes__feels-like daily-changes--text">Feels like: 10°</span>
+                                    </div>
+                                    <div class="daily-changes__precipitation">
+                                        <span class="daily-changes__precipitation-title daily-changes--text">Rain</span>
+                                        <img class="daily-changes__precipitation-pic" src="img/rain.png" alt="daily-wthr-pic">
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="city__daily-changes">
+                                <div class="daily-changes__data-time">
+                                    <span class="daily-changes__data daily-changes--text">17 May</span>
+                                    <span class="daily-changes__time daily-changes--text">18:00</span>
+                                </div>
+                                <div class="daily-changes__conditions">
+                                    <div class="daily-changes__temperature">
+                                        <span class="daily-changes__now daily-changes--text">Temperature: 13°</span>
+                                        <span class="daily-changes__feels-like daily-changes--text">Feels like: 10°</span>
+                                    </div>
+                                    <div class="daily-changes__precipitation">
+                                        <span class="daily-changes__precipitation-title daily-changes--text">Rain</span>
+                                        <img class="daily-changes__precipitation-pic" src="img/rain.png" alt="daily-wthr-pic">
+                                    </div>
+                                </div>
+                            </div> 
                         </div>                    
                     </div>
                     <div class="added-locs">

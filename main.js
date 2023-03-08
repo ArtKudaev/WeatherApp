@@ -112,15 +112,42 @@ window.addEventListener('load', () => {
 })
 
 const activeButton = document.querySelectorAll('.city__details-button');
+const activeContent = document.querySelectorAll('.city__temperature');
 
-activeButton.forEach(function(button) {
+activeButton.forEach(function(elem) {
+    elem.addEventListener ('click', activeTab);
+})
+
+function activeTab() {
+    activeButton.forEach(function(elem){
+        elem.classList.remove('active');
+    })
+    this.classList.add('active');
+    let tabName = this.getAttribute('data-tab');
+
+    activeTavContent(tabName);
+}
+
+function activeTavContent(tabName) {
+    activeContent.forEach(function(item) {
+        item.classList.contains('tabName') ? item.classList.add('active') : item.classList.remove('active');
+    })
+}
+
+
+
+
+
+
+/* activeButton.forEach(function(button) {
     button.addEventListener ('click', () => {
         let currentButton = button;
         
         activeButton.forEach(function(button) {
-        button.classList.remove('active-button');
+        button.classList.remove('active');
         });
 
-        currentButton.classList.add('active-button');
+        currentButton.classList.add('active');
     });
-});
+}); */
+
