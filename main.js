@@ -130,7 +130,7 @@ function activeTab() {
 
 function activeTavContent(tabName) {
     activeContent.forEach(function(item) {
-        item.classList.contains('tabName') ? item.classList.add('active') : item.classList.remove('active');
+        item.classList.contains(tabName) ? item.classList.add('active') : item.classList.remove('active');
     })
 }
 
