@@ -6,16 +6,14 @@ const API_KEY = 'f660a2fb1e4bad108d6160b7f58c555f';
 const form = document.querySelector('.window__input');
 const btnRequest = document.querySelector('.window__input-loop');
 const input = document.querySelector('.window__input-text');
-const tata = getCurrentCity();
+const getCity = getCurrentCity();
 let favoriteArr = [];
 
 function getWeatherData(cityName) {  
     const url = `${SERVER_URL}?q=${cityName}&appid=${API_KEY}`;
-    console.log(url);
-    return fetch(url).then(response => response.json());
     
+    return fetch(url).then(response => response.json());  
 } 
-
 function addDataToNowSection(inputCity) {
     getWeatherData(inputCity).then(data => { 
         document.querySelector('.city__name').innerHTML = data.name;
@@ -42,7 +40,7 @@ function addDataToDetailsSection(inputCity) {
         let sunsetTime = new Date(sunSet * 1000);
         let setHours = sunsetTime.getHours().toString().padStart(2, '0');
         let setMinutes = '0' + sunsetTime.getMinutes().toString().padStart(2, '0');
-        document.querySelector('.sunset').innerHTML = `Sunrise: ${setHours}:${setMinutes}`;
+        document.querySelector('.sunset').innerHTML = `Sunset: ${setHours}:${setMinutes}`;
     }).catch((error) => {
         alert('UPS...');
     })
@@ -56,7 +54,7 @@ form.addEventListener('submit', e => {
 });
 
 btnRequest.addEventListener('click', () => {
-    addDataToNowSection(input.value)
+    addDataToNowSection(input.value);
     addDataToDetailsSection(input.value);
     }
 );
@@ -86,6 +84,7 @@ function createLocsLicst (cityName) {
     
     addedListItem.addEventListener('click', () => {
         addDataToNowSection(addedCityName);
+        addDataToDetailsSection(addedCityName);
     }
 );
 
@@ -131,8 +130,9 @@ window.addEventListener('load', () => {
             addedList.append(addedLoc);
         })
     }
-    if(tata === undefined) return
-    else addDataToNowSection(tata);
+    if(getCity === undefined) return
+    else if (addDataToNowSection(getCity));
+    else if (addDataToDetailsSection(getCity));
 })
 
 const activeButton = document.querySelectorAll('.city__details-button');
@@ -149,29 +149,11 @@ function activeTab() {
     this.classList.add('active');
     let tabName = this.getAttribute('data-tab');
 
-    activeTavContent(tabName);
+    activeTabContent(tabName);
 }
 
-function activeTavContent(tabName) {
+function activeTabContent(tabName) {
     activeContent.forEach(function(item) {
         item.classList.contains(tabName) ? item.classList.add('active') : item.classList.remove('active');
     })
 }
-
-
-
-
-
-
-/* activeButton.forEach(function(button) {
-    button.addEventListener ('click', () => {
-        let currentButton = button;
-        
-        activeButton.forEach(function(button) {
-        button.classList.remove('active');
-        });
-
-        currentButton.classList.add('active');
-    });
-}); */
-

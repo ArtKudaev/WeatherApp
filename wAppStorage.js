@@ -11,7 +11,7 @@ export function getFavoriteCities () {
 export function getCurrentCity() {
     const favoriteCities = JSON.parse(localStorage.getItem(KEY));
     if (favoriteCities === null) {
-        alert('LETS START!');
+        return
     }
     else{
         const currentCity = favoriteCities[favoriteCities.length - 1];
