@@ -1,4 +1,4 @@
-import {saveFavoriteCities, getFavoriteCities, getCurrentCity} from './wAppStorage.js'
+import {saveFavoriteCities, getFavoriteCities, getCurrentCity,} from './wAppStorage.js'
 
 const SERVER_URL = 'http://api.openweathermap.org/data/2.5/weather';
 const API_KEY = 'f660a2fb1e4bad108d6160b7f58c555f';
@@ -51,11 +51,13 @@ form.addEventListener('submit', e => {
     
     addDataToNowSection(input.value);
     addDataToDetailsSection(input.value);
+    addDataToForecastSection(input.value);
 });
 
 btnRequest.addEventListener('click', () => {
     addDataToNowSection(input.value);
     addDataToDetailsSection(input.value);
+    addDataToForecastSection(input.value);
     }
 );
 
@@ -85,6 +87,7 @@ function createLocsLicst (cityName) {
     addedListItem.addEventListener('click', () => {
         addDataToNowSection(addedCityName);
         addDataToDetailsSection(addedCityName);
+        addDataToForecastSection(addedCityName);
     }
 );
 
@@ -140,7 +143,7 @@ const activeContent = document.querySelectorAll('.city__temperature');
 
 activeButton.forEach(function(elem) {
     elem.addEventListener ('click', activeTab);
-})
+});
 
 function activeTab() {
     activeButton.forEach(function(elem){
@@ -157,3 +160,64 @@ function activeTabContent(tabName) {
         item.classList.contains(tabName) ? item.classList.add('active') : item.classList.remove('active');
     })
 }
+
+
+const SERVER_URL_FORECAST = 'http://api.openweathermap.org/data/2.5/forecast'
+
+function getForecastData(cityName) {  
+    const url = (`${SERVER_URL_FORECAST}?q=${cityName}&cnt=5&appid=${API_KEY}`);
+    console.log(url);
+    return fetch(url).then(response => response.json());  
+};
+        
+function addDataToForecastSection(inputCity) {
+    getForecastData(inputCity).then(data => { 
+        document.querySelector('.city-for-forecast').innerHTML = data.city.name;
+        // First period - current time
+        
+        let currentDateTime = data.list[0].dt;
+        let currentDate = new Date(currentDateTime * 1000);
+        let date = currentDate.getDate();
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let month = months[currentDate.getMonth()];
+        document.querySelector('.daily-changes__data').innerHTML = `${date} ${month}`;
+        let hours = currentDate.getHours().toString().padStart(2, '0');
+        let minutes = currentDate.getMinutes().toString().padStart(2, '0');
+        document.querySelector('.daily-changes__time').innerHTML = `${hours}:${minutes}`;
+            
+        document.querySelector('.daily-changes__now').innerHTML = `Temperature: ${Math.round(data.list[0].main.temp - 273) + '&deg'}`;
+        document.querySelector('.daily-changes__feels-like').innerHTML = `Feels like: ${Math.round(data.list[0].main.feels_like - 273) + '&deg'}`;
+        document.querySelector('.daily-changes__precipitation-title').innerHTML = data.list[0].weather[0].main;
+        let icon = data.list[0].weather[0].icon;
+        document.querySelector('.daily-changes__precipitation-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+       
+                
+        //const horlyForecast = document.querySelectorAll('.city__daily-changes');
+        //let changingDataList = data.list[0];
+
+        
+        
+        
+        
+        
+        
+        // Second period (every 3 hours)
+        /* let currentDateTimeSecond = data.list[1].dt;
+        let currentDateSecond = new Date(currentDateTimeSecond * 1000);
+        let dateSecond = currentDateSecond.getDate();
+        let monthsSecond = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let monthSecond = months[currentDateSecond.getMonth()];
+        document.querySelector('.daily-changes__data').innerHTML = `${dateSecond} ${monthSecond}`;
+        let hoursSecond = currentDateSecond.getHours().toString().padStart(2, '0');
+        let minutesSecond = currentDateSecond.getMinutes().toString().padStart(2, '0');
+        document.querySelector('.daily-changes__time').innerHTML = `${hoursSecond}:${minutesSecond}`;
+        
+        document.querySelector('.daily-changes__now').innerHTML = `Temperature: ${Math.round(data.list[1].main.temp - 273) + '&deg'}`;
+        document.querySelector('.daily-changes__feels-like').innerHTML = `Feels like: ${Math.round(data.list[1].main.feels_like - 273) + '&deg'}`;
+        document.querySelector('.daily-changes__precipitation-title').innerHTML = data.list[1].weather[0].main;
+        let iconSecond = data.list[1].weather[0].iconSecond;
+        document.querySelector('.daily-changes__precipitation-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png'; */
+    }).catch((error) => {
+        alert('WHAAT?');
+    })
+};

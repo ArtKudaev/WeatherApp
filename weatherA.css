@@ -223,7 +223,7 @@ body {
 }
 .daily-changes__conditions {
     display: flex;
-    gap: 73px;
+    gap: 60px;
 }
 .daily-changes__temperature {
     display: flex;
