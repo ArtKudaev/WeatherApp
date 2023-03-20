@@ -10,42 +10,68 @@ const input = document.querySelector('.window__input-text');
 const getCity = getCurrentCity();
 let favoriteArr = [];
 
-function getWeatherData(cityName) {  
+async function getWeatherData(cityName) {  
     const url = `${SERVER_URL}?q=${cityName}&appid=${API_KEY}`;
     
-    return fetch(url).then(response => response.json());  
-} 
-function addDataToNowSection(inputCity) {
-    getWeatherData(inputCity).then(data => { 
-        document.querySelector('.city__name').innerHTML = data.name;
-        document.querySelector('.city__celcium').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
-        let icon = data.weather[0].icon;
-        document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
-    }).catch((error) => {
-        alert('UPS...');
-    })
-}
+    const responseRaw = await fetch(url);
+    const response = await responseRaw.json();
 
-function addDataToDetailsSection(inputCity) {
-    getWeatherData(inputCity).then(data => { 
-        document.querySelector('.city__name--detailed').innerHTML = data.name;
-        document.querySelector('.temp').innerHTML = `Temperature: ${Math.round(data.main.temp - 273) + '&deg;'}`;
-        document.querySelector('.feels-like').innerHTML = `Feels like: ${Math.round(data.main.feels_like - 273) + '&deg;'}`;
-        document.querySelector('.weather-description').innerHTML = `Weather: ${data.weather[0].main}`;
-        let sunRise = data.sys.sunrise;
+    return response;
+};
+async function addDataToNowSection(inputCity) {
+    try {
+        const data = await getWeatherData(inputCity);
+
+        const {
+            name: namE,
+            main: {temp: temP},
+            weather: {[0]:{icon: icoN}}
+        } = data;
+
+        document.querySelector('.city__name').innerHTML = namE;
+        document.querySelector('.city__celcium').innerHTML = Math.round(temP - 273) + '&deg;';
+        document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icoN + '@2x.png';
+
+    } catch(e) {
+        alert('alert(`Уахь: ${e.message}`);');
+    };
+};
+
+async function addDataToDetailsSection(inputCity) {
+    try {
+        const data = await getWeatherData(inputCity);
+
+        const {
+            name,
+            main: {
+                temp,
+                feels_like,
+            },
+            sys: {
+                sunrise,
+                sunset
+            },
+            weather,
+        } = data;
+
+        document.querySelector('.city__name--detailed').innerHTML = name;
+        document.querySelector('.temp').innerHTML = `Temperature: ${Math.round(temp - 273) + '&deg;'}`;
+        document.querySelector('.feels-like').innerHTML = `Feels like: ${Math.round(feels_like - 273) + '&deg;'}`;
+        document.querySelector('.weather-description').innerHTML = `Weather: ${weather[0].main}`;
+        let sunRise = sunrise;
         let sunriseTime = new Date(sunRise * 1000);
         let riseHours = sunriseTime.getHours().toString().padStart(2, '0');
         let riseMinutes = sunriseTime.getMinutes().toString().padStart(2, '0');
         document.querySelector('.sunrise').innerHTML = `Sunrise: ${riseHours}:${riseMinutes}`;
-        let sunSet = data.sys.sunset;
+        let sunSet = sunset;
         let sunsetTime = new Date(sunSet * 1000);
         let setHours = sunsetTime.getHours().toString().padStart(2, '0');
         let setMinutes = sunsetTime.getMinutes().toString().padStart(2, '0');
         document.querySelector('.sunset').innerHTML = `Sunset: ${setHours}:${setMinutes}`;
-    }).catch((error) => {
-        alert('UPS...');
-    })
-}
+    } catch(e) {
+        alert(`Произошла ошибка: ${e.message}`);
+    }
+};
 
 form.addEventListener('submit', e => {
     e.preventDefault();
