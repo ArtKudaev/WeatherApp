@@ -1,5 +1,5 @@
 import {saveFavoriteCities, getFavoriteCities, getCurrentCity,} from './wAppStorage.js'
-import {addDataToForecastSection} from './forecast.js'
+//import {addDataToForecastSection} from './forecast.js'
 
 const SERVER_URL = 'http://api.openweathermap.org/data/2.5/weather';
 const API_KEY = 'f660a2fb1e4bad108d6160b7f58c555f';
@@ -23,14 +23,14 @@ async function addDataToNowSection(inputCity) {
         const data = await getWeatherData(inputCity);
 
         const {
-            name: namE,
-            main: {temp: temP},
-            weather: {[0]:{icon: icoN}}
+            name: name,
+            main: {temp: temp},
+            weather: {[0]:{icon: icon}}
         } = data;
 
-        document.querySelector('.city__name').innerHTML = namE;
-        document.querySelector('.city__celcium').innerHTML = Math.round(temP - 273) + '&deg;';
-        document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icoN + '@2x.png';
+        document.querySelector('.city__name').innerHTML = name;
+        document.querySelector('.city__celcium').innerHTML = Math.round(temp - 273) + '&deg;';
+        document.querySelector('.city__weather-pic').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
 
     } catch(e) {
         alert('alert(`Уахь: ${e.message}`);');
@@ -73,18 +73,22 @@ async function addDataToDetailsSection(inputCity) {
     }
 };
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
     e.preventDefault();
     
     addDataToNowSection(input.value);
     addDataToDetailsSection(input.value);
-    addDataToForecastSection(input.value);
+    const importForecast = await import('./forecast.js');
+    importForecast.addDataToForecastSection(input.value);
+    //addDataToForecastSection(input.value);
 });
 
-btnRequest.addEventListener('click', () => {
+btnRequest.addEventListener('click', async () => {
     addDataToNowSection(input.value);
     addDataToDetailsSection(input.value);
-    addDataToForecastSection(input.value);
+    const importForecast = await import('./forecast.js');
+    importForecast.addDataToForecastSection(input.value);
+    //addDataToForecastSection(input.value);
     }
 );
 
