@@ -1,0 +1,29 @@
+{
+  "name": "wthr-npm",
+  "version": "1.0.0",
+  "description": "test-npm",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtKudaev/WeatherApp.git"
+  },
+  "keywords": [
+    "weatherapp",
+    "npm"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtKudaev/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/ArtKudaev/WeatherApp#readme",
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
