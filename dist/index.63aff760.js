@@ -558,7 +558,8 @@ function hmrAccept(bundle, id) {
 
 },{}],"adjPd":[function(require,module,exports) {
 var _wAppStorageJs = require("./wAppStorage.js");
-var _indexJs = require("./node_modules/date-fns/esm/index.js");
+var _dateFns = require("date-fns");
+//import { format } from './node_modules/date-fns/esm/index.js';
 //import {addDataToForecastSection} from './forecast.js'
 const SERVER_URL = "http://api.openweathermap.org/data/2.5/weather";
 const API_KEY = "f660a2fb1e4bad108d6160b7f58c555f";
@@ -593,13 +594,13 @@ async function addDataToDetailsSection(inputCity) {
         document.querySelector(".feels-like").innerHTML = `Feels like: ${Math.round(feels_like - 273) + "&deg;"}`;
         document.querySelector(".weather-description").innerHTML = `Weather: ${weather[0].main}`;
         //let sunRise = sunrise;
-        let sunRise = (0, _indexJs.format)(sunrise, "HH:mm");
+        let sunRise = (0, _dateFns.format)(sunrise * 1000, "HH:mm");
         //let sunriseTime = new Date(sunRise * 1000);
         //let riseHours = sunriseTime.getHours().toString().padStart(2, '0');
         //let riseMinutes = sunriseTime.getMinutes().toString().padStart(2, '0');
         document.querySelector(".sunrise").innerHTML = `Sunrise: ${sunRise}`;
         //let sunSet = sunset;
-        let sunSet = (0, _indexJs.format)(sunset, "HH:mm");
+        let sunSet = (0, _dateFns.format)(sunset * 1000, "HH:mm");
         //let sunsetTime = new Date(sunSet * 1000);
         //let setHours = sunsetTime.getHours().toString().padStart(2, '0');
         //let setMinutes = sunsetTime.getMinutes().toString().padStart(2, '0');
@@ -755,7 +756,7 @@ function addDataToForecastSection(inputCity) {
     })
 }; */ 
 
-},{"./wAppStorage.js":"4eWVi","./node_modules/date-fns/esm/index.js":"9yHCA","b94c715ab89390ce":"aDkLu"}],"4eWVi":[function(require,module,exports) {
+},{"./wAppStorage.js":"4eWVi","date-fns":"9yHCA","b94c715ab89390ce":"aDkLu"}],"4eWVi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "saveFavoriteCities", ()=>saveFavoriteCities);
