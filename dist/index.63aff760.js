@@ -666,6 +666,10 @@ function deleteAddedLoc(target) {
     });
     (0, _wAppStorageJs.saveFavoriteCities)(favoriteArr);
 }
+(0, _wAppStorageJs.setCookie)("saveLocationCookie", (0, _wAppStorageJs.getCurrentCity)(), {
+    secure: true,
+    "max-age": 3600
+});
 window.addEventListener("load", ()=>{
     const cities = (0, _wAppStorageJs.getFavoriteCities)();
     favoriteArr = cities;
@@ -675,8 +679,8 @@ window.addEventListener("load", ()=>{
         addedList.append(addedLoc);
     });
     if (getCity === undefined) return;
-    else if (addDataToNowSection(getCity)) ;
-    else addDataToDetailsSection(getCity);
+    else if (addDataToNowSection((0, _wAppStorageJs.getCookie)("saveLocationCookie"))) ;
+    else addDataToDetailsSection((0, _wAppStorageJs.getCookie)("saveLocationCookie"));
 });
 const activeButton = document.querySelectorAll(".city__details-button");
 const activeContent = document.querySelectorAll(".city__temperature");
@@ -761,7 +765,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "saveFavoriteCities", ()=>saveFavoriteCities);
 parcelHelpers.export(exports, "getFavoriteCities", ()=>getFavoriteCities);
-parcelHelpers.export(exports, "getCurrentCity", ()=>getCurrentCity) /* let rrr = [data.list[0], data.list[1], data.list[2]];
+parcelHelpers.export(exports, "getCurrentCity", ()=>getCurrentCity);
+parcelHelpers.export(exports, "setCookie", ()=>setCookie);
+parcelHelpers.export(exports, "getCookie", ()=>getCookie) /* let rrr = [data.list[0], data.list[1], data.list[2]];
         rrr.forEach(function(el) {
             let currentDateTime = el.dt;
             let currentDate = new Date(currentDateTime * 1000);
@@ -820,6 +826,24 @@ function getCurrentCity() {
         const currentCity = favoriteCities[favoriteCities.length - 1];
         return currentCity;
     }
+}
+function setCookie(name, value, options = {}) {
+    options = {
+        path: "/",
+        ...options
+    };
+    if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    for(let optionKey in options){
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) updatedCookie += "=" + optionValue;
+    }
+    document.cookie = updatedCookie;
+}
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {

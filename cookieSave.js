@@ -1,25 +1,4 @@
-const KEY = 'favorite-cities';
-
-export function saveFavoriteCities (favoriteArr) {
-    localStorage.setItem(KEY, JSON.stringify(favoriteArr))
-}
-
-export function getFavoriteCities () {
-    return JSON.parse(localStorage.getItem(KEY)) || []
-}
-
-export function getCurrentCity() {
-    const favoriteCities = JSON.parse(localStorage.getItem(KEY));
-    if (favoriteCities === null) {
-        return
-    }
-    else{
-        const currentCity = favoriteCities[favoriteCities.length - 1];
-        return currentCity;
-    }
-}
-
-export function setCookie(name, value, options = {}) {
+/* export function setCookie(name, value, options = {}) {
 
     options = {
       path: '/',
@@ -48,4 +27,25 @@ export function getCookie(name) {
       "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+} */
+
+
+
+
+
+
+
+
+
+
+
+/* function setCookie (name, value, exp) {
+    let d = new Date();
+    d.setTime(d.getTime() + (60 * 60 * 1000));
+    let expires = d.toUTCString();
+    document.cookie = `forSave=${favoriteArr}; expires=${expires}; path=/`;
+};
+
+function getCookie () {
+    
+} */
