@@ -1,6 +1,6 @@
 import {saveFavoriteCities, getFavoriteCities, getCurrentCity, setCookie, getCookie} from './wAppStorage.js'
 import { format } from 'date-fns';
-//import { format } from './node_modules/date-fns/esm/index.js';
+import { format } from './node_modules/date-fns/esm/index.js';
 //import {addDataToForecastSection} from './forecast.js'
 
 const SERVER_URL = 'http://api.openweathermap.org/data/2.5/weather';
